@@ -1,0 +1,58 @@
+{
+  "name": "Elysium - Cofres Seguros",
+  "short_name": "Elysium",
+  "description": "Crie cofres seguros para suas notas e compartilhe com pessoas autorizadas de acordo com suas regras",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0f0f1a",
+  "theme_color": "#4dd4ac",
+  "orientation": "portrait-primary",
+  "lang": "pt-BR",
+  "dir": "ltr",
+  "scope": "/",
+  "icons": [
+    {
+      "src": "/assets/generated/elysium-icon-192.dim_192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/assets/generated/elysium-icon-512.dim_512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["productivity", "utilities"],
+  "screenshots": [],
+  "shortcuts": [
+    {
+      "name": "Meus Cofres",
+      "short_name": "Cofres",
+      "description": "Ver todos os meus cofres",
+      "url": "/?tab=cofres",
+      "icons": [
+        {
+          "src": "/assets/generated/elysium-icon-192.dim_192x192.png",
+          "sizes": "192x192",
+          "type": "image/png"
+        }
+      ]
+    },
+    {
+      "name": "Meus Contatos",
+      "short_name": "Contatos",
+      "description": "Gerenciar meus contatos",
+      "url": "/?tab=contatos",
+      "icons": [
+        {
+          "src": "/assets/generated/elysium-icon-192.dim_192x192.png",
+          "sizes": "192x192",
+          "type": "image/png"
+        }
+      ]
+    }
+  ],
+  "prefer_related_applications": false
+}

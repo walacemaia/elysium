@@ -1,0 +1,70 @@
+// Version: 1.0.0
+type Cofre__1016264894 =
+  {
+    descricao : Text;
+    id : Nat;
+    nome : Text;
+    notas : [Nota__544752320];
+    proprietario : Principal;
+    regrasAcesso : RegrasAcesso__1068569037
+  };
+type Contato__694873608 = {nome : Text; principalId : Principal};
+type Data__791452850<K, V> =
+  {var count : Nat__490723111; kvs : [var ?(K, V)]};
+type Int__270357528 = Int__616954475;
+type Int__616954475 = Int;
+type Internal__8484328<K, V> =
+  {children : [var ?Node__46230540<K, V>]; data : Data__791452850<K, V>};
+type Leaf__809889148<K, V> = {data : Data__791452850<K, V>};
+type Map__158565046<K, V> = Map__297112838<K, V>;
+type Map__297112838<K, V> =
+  {var root : Node__46230540<K, V>; var size : Nat__490723111};
+type Map__605269027<K, V> = Map__158565046<K, V>;
+type Nat__490723111 = Nat__920180692;
+type Nat__920180692 = Nat;
+type Node__46230540<K, V> =
+  {#internal : Internal__8484328<K, V>; #leaf : Leaf__809889148<K, V>};
+type Nota__544752320 =
+  {
+    conteudo : Text;
+    dataCriacao : Time__900049286;
+    dataModificacao : Time__900049286;
+    id : Nat;
+    titulo : Text
+  };
+type RegrasAcesso__1068569037 =
+  {periodoInatividade : Int; usuariosAutorizados : [Principal]};
+type Time__796480547 = Int__270357528;
+type Time__900049286 = Time__796480547;
+type UserProfile__491224006 = {name : Text; principalId : Text};
+type UserRole__521596351 = {#admin; #guest; #user};
+actor {
+  stable accessControlState :
+    {
+      var adminAssigned : Bool;
+      userRoles : Map__605269027<Principal, UserRole__521596351>
+    };
+  stable var cofres :
+    {
+      var root : Node__46230540<Nat, Cofre__1016264894>;
+      var size : Nat__490723111
+    };
+  stable var contatos :
+    {
+      var root : Node__46230540<Principal, [Contato__694873608]>;
+      var size : Nat__490723111
+    };
+  stable var primeiroAdmin : ?Principal;
+  stable var proximoIdCofre : Nat;
+  stable var proximoIdNota : Nat;
+  stable var ultimosAcessos :
+    {
+      var root : Node__46230540<Principal, Time__900049286>;
+      var size : Nat__490723111
+    };
+  stable var userProfiles :
+    {
+      var root : Node__46230540<Principal, UserProfile__491224006>;
+      var size : Nat__490723111
+    }
+};

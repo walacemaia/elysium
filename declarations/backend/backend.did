@@ -1,0 +1,65 @@
+type UserRole = 
+ variant {
+   admin;
+   guest;
+   user;
+ };
+type UserProfile = 
+ record {
+   name: text;
+   principalId: text;
+ };
+type Time = int;
+type RegrasAcesso = 
+ record {
+   periodoInatividade: int;
+   usuariosAutorizados: vec principal;
+ };
+type Nota = 
+ record {
+   conteudo: text;
+   dataCriacao: Time;
+   dataModificacao: Time;
+   id: nat;
+   titulo: text;
+ };
+type Contato = 
+ record {
+   nome: text;
+   principalId: principal;
+ };
+type Cofre = 
+ record {
+   descricao: text;
+   id: nat;
+   nome: text;
+   notas: vec Nota;
+   proprietario: principal;
+   regrasAcesso: RegrasAcesso;
+ };
+service : {
+  adicionarContato: (principalId: principal) -> ();
+  adicionarNota: (idCofre: nat, titulo: text, conteudo: text) -> (nat);
+  assignCallerUserRole: (user: principal, role: UserRole) -> ();
+  atualizarUltimoAcessoBackend: (usuario: principal) -> ();
+  buscarCofrePorId: (idCofre: nat) -> (Cofre);
+  criarCofre: (nome: text, descricao: text, regras: RegrasAcesso) -> (nat);
+  editarCofre: (idCofre: nat, nome: text, descricao: text, regras:
+   RegrasAcesso) -> ();
+  editarNota: (idCofre: nat, idNota: nat, novoTitulo: text, novoConteudo:
+   text) -> ();
+  excluirCofre: (idCofre: nat) -> ();
+  excluirNota: (idCofre: nat, idNota: nat) -> ();
+  getCallerUserProfile: () -> (opt UserProfile) query;
+  getCallerUserRole: () -> (UserRole) query;
+  getUserProfile: (user: principal) -> (opt UserProfile) query;
+  initializeAccessControl: () -> ();
+  isCallerAdmin: () -> (bool) query;
+  listarCofresUsuario: () -> (vec Cofre);
+  listarContatos: () -> (vec Contato) query;
+  listarNotas: (idCofre: nat) -> (vec Nota);
+  obterUltimoAcesso: (usuario: principal) -> (Time) query;
+  removerContato: (principalId: principal) -> ();
+  revogarAutorizacao: (idCofre: nat, usuario: principal) -> ();
+  saveCallerUserProfile: (profile: UserProfile) -> ();
+}
